@@ -154,6 +154,7 @@ function fetchCgmData() {
                     }
                      
                   //GREEN BELOW 60
+                  //TODO: Move alert tresholds to config
                   if (parseInt(currentBG,10) <60)
                   {
                     console.log("Hue triggered");
@@ -166,6 +167,7 @@ function fetchCgmData() {
                   }
                   
                   //OFF BETWEEN 60 AND 300
+                  //TODO: Move alert tresholds to config
                   if (parseInt(currentBG,10) >60 && parseInt(currentBG,10) <300 )
                   {
                     console.log("Hue triggered");
@@ -186,7 +188,7 @@ function fetchCgmData() {
                         //UPDATE IP TO YOUR BRIDGE
                         //TODO: move to configuration page
                         //TODO: move light ID (2 here) to config.
-                        hueReq.open('PUT', 'http://192.168.23.254/api/newdeveloper/lights/2/state', false);
+                        hueReq.open('PUT', 'http://192.168.23.254/api/newdeveloper/lights/1/state', false);
                         hueReq.setRequestHeader("Content-Type", "application/json");
                         hueReq.send(JSON.stringify(hue));
                       }
