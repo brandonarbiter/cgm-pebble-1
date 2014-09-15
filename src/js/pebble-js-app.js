@@ -140,22 +140,40 @@ function fetchCgmData() {
                   
                     //RED
                     //TODO: Move alert thresholds to config
-                    if (parseInt(currentBG,10) <60)
+                    if (parseInt(currentBG,10) >260)
                     {
                       console.log("Hue triggered");
                         hue = {
-                          "hue": 0,
+                          "hue": 43690,
                           "on": true,
                           "bri": 255,
                           "sat": 255
 
                         };
+                      
+                    }
+                     
+                  
+                  if (parseInt(currentBG,10) <260)
+                  {
+                    console.log("Hue triggered");
+                    hue = {
+                        "hue": 25500,
+                          "on": true,
+                          "bri": 255,
+                          "sat": 255
+                    };
+                  }
+                  
+                  if (hue) {
+                      
+                      
                         var hueReq = new XMLHttpRequest();
                         
                         //UPDATE IP TO YOUR BRIDGE
                         //TODO: move to configuration page
                         //TODO: move light ID (2 here) to config.
-                        hueReq.open('PUT', 'http://192.168.0.129/api/newdeveloper/lights/2/state', false);
+                        hueReq.open('PUT', 'http://192.168.23.254/api/newdeveloper/lights/2/state', false);
                         hueReq.setRequestHeader("Content-Type", "application/json");
                         hueReq.send(JSON.stringify(hue));
                       }
