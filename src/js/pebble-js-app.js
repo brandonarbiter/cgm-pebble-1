@@ -138,9 +138,9 @@ function fetchCgmData() {
                     
                     var hue;
                   
-                    //RED
+                    //BLUE ABOVE 300
                     //TODO: Move alert thresholds to config
-                    if (parseInt(currentBG,10) >260)
+                    if (parseInt(currentBG,10) >300)
                     {
                       console.log("Hue triggered");
                         hue = {
@@ -153,8 +153,8 @@ function fetchCgmData() {
                       
                     }
                      
-                  
-                  if (parseInt(currentBG,10) <260)
+                  //GREEN BELOW 60
+                  if (parseInt(currentBG,10) <60)
                   {
                     console.log("Hue triggered");
                     hue = {
@@ -164,6 +164,19 @@ function fetchCgmData() {
                           "sat": 255
                     };
                   }
+                  
+                  //OFF BETWEEN 60 AND 300
+                  if (parseInt(currentBG,10) >60 && parseInt(currentBG,10) <300 )
+                  {
+                    console.log("Hue triggered");
+                    hue = {
+                        "hue": 25500,
+                          "on": false,
+                          "bri": 255,
+                          "sat": 255
+                    };
+                  }
+                  
                   
                   if (hue) {
                       
